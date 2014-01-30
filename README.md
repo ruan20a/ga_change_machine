@@ -1,4 +1,7 @@
-ga_change_machine
+GA-Change Machine
 =================
+Run app.rb to start
 
-Change Machine for GA
+
+
+

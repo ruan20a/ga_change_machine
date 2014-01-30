@@ -4,33 +4,28 @@ require_relative '../machine'
 
 describe Machine do
   let(:machine){
-    Machine.new("3 pennies, 4 dimes",true)
+    Machine.new(,true)
   }
 
-  let(:machine2){
-    Machine.new("99",false)
-  }
-
-  describe "#modify_input" do
-    context "when currency_conversion" do
-      it "removes space and becomes array" do
-        @output = machine.modify_input
-        expect(@output).to match_array(["3pennies","4dimes"])
-      end
+  describe "#standardize_currency" do
+    it "removes space and becomes array" do
+      input = "3 pennies, 4 dimes"
+      output = machine.standardize_currency(input)
+      expect(@output).to match_array(["3penny","4dime"])
     end
+  end
 
-    context "when not a currency_conversion" do
-      it "turns input into num" do
-        @output = machine2.modify_input
-        expect(@output).to be 99
-      end
+  describe "#standardize_cents" do
+    it "turns input into num" do
+      input = "99 cents"
+      output = machine.standardize_cents
+      expect(@output).to be 99
     end
   end
 
   describe "#convert_cents" do
-
     it "returns the lowest # of coins" do
-      expect(machine2.convert_cents(99)).to eq("3 quarter, 2 dime, 4 penny")
+      expect(machine.convert_cents(99)).to eq("3 quarter, 2 dime, 4 penny")
     end
 
     before(:each) do
@@ -45,6 +40,5 @@ describe Machine do
     it "does not return 0 in a string" do
       @output.should_not include "0"
     end
-
   end
 end
