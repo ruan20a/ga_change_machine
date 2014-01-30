@@ -32,7 +32,7 @@ class Machine
 
   def convert_cents(number)
     output=[]
-    value_set = {}
+    value_set = {} #reverse
     @currency_set.each_pair{|k,v| value_set[v] = k}
     sorted_values = value_set.keys.sort.reverse #sorted desc to get the largest denominations first (99%25 before 99%1)
 
@@ -46,6 +46,9 @@ class Machine
     output.join(", ")
   end
 
+
+    return "#{total_cents} cents"
+  end
 
 
 end
