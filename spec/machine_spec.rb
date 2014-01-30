@@ -41,4 +41,5 @@ describe Machine do
       @output.should_not include "0"
     end
   end
+
 end
