@@ -42,4 +42,15 @@ describe Machine do
     end
   end
 
+  describe "#convert_currency" do
+    before(:each) do
+      @input = ["3 quarters", "1 dime", "1 nickel", "1 penny"]
+      @output = machine.convert_currency(@input)
+    end
+
+    it "provides nominal cents for input" do
+      expect(@output).to eq("91 cents")
+    end
+  end
+
 end

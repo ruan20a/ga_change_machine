@@ -45,8 +45,6 @@ class Machine
     end
     output.join(", ")
   end
-
-
     return "#{total_cents} cents"
   end
 
