@@ -37,9 +37,9 @@ class Machine
     sorted_values = value_set.keys.sort.reverse #sorted desc to get the largest denominations first (99%25 before 99%1)
 
     if number > 0
-      sorted_values.each do |divisor|
-        currency = value_set[divisor]
-        quotient, number = number.divmod(divisor)
+      sorted_values.each do |divisor| #going through each key in reverse
+        currency = value_set[divisor] #store the current currency
+        quotient, number = number.divmod(divisor) #quotient = currency; resetting number to remainder
         output << "#{quotient} #{currency}" if quotient > 0
       end
     end
@@ -47,6 +47,18 @@ class Machine
   end
 
 
+  def convert_currency(arr_input)
+    total_cents = 0
+    arr_input.each do |amount|
+      @currency_set.keys.each do |key|
+        number = amount.gsub!(/#{key}/,"").to_i #isolate # of current currency
+        multiplier = number == nil ? 0 : number
+        cents = multiplier * @currency_set[key] # (num * value)
+        total_cents += cents #add it to the running total
+      end
+    end
+    return "#{total_cents} cents"
+  end
 
 
 end
