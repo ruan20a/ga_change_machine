@@ -4,22 +4,22 @@ require_relative '../machine'
 
 describe Machine do
   let(:machine){
-    Machine.new(,true)
+    Machine.new()
   }
 
   describe "#standardize_currency" do
     it "removes space and becomes array" do
       input = "3 pennies, 4 dimes"
       output = machine.standardize_currency(input)
-      expect(@output).to match_array(["3penny","4dime"])
+      expect(output).to match_array(["3penny","4dime"])
     end
   end
 
   describe "#standardize_cents" do
     it "turns input into num" do
       input = "99 cents"
-      output = machine.standardize_cents
-      expect(@output).to be 99
+      output = machine.standardize_cents(input)
+      expect(output).to be 99
     end
   end
 
