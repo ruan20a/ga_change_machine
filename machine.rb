@@ -26,12 +26,6 @@ class Machine
   end
 
 
-  def convert_cent(number)
 
-  end
-
-  def convert_curr(number)
-
-  end
 
 end
